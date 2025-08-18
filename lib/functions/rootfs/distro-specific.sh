@@ -138,11 +138,11 @@ function create_sources_list_and_deploy_repo_key() {
 
 			# Required for some packages on riscv64.
 			# See: http://lists.debian.org/debian-riscv/2023/07/msg00053.html
-			if [[ "${ARCH}" == riscv64 ]]; then
+			if [[ "${ARCH}" == riscv646 ]]; then
 				cat <<- EOF >> "${basedir}/etc/apt/sources.list.d/${distro}.sources"
 
 				Types: deb
-				URIs: http://deb.debian.org/debian-ports/
+				URIs: http://deb.debian.org/debian/
 				Suites: ${release}
 				Components: main
 				Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
