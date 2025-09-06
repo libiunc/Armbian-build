@@ -92,6 +92,7 @@ function create_new_rootfs_cache_via_debootstrap() {
 	cd "${SDCARD}" || exit_with_error "cray-cray about SDCARD" "${SDCARD}" # this will prevent error sh: 0: getcwd() failed
 
 	declare -a deboostrap_arguments=(
+		"--no-check-gpg"
 		"--variant=minbase"                                         # minimal base variant. go ask Debian about it.
 		"--arch=${ARCH}"                                            # the arch
 		"'--include=${AGGREGATED_PACKAGES_DEBOOTSTRAP_COMMA}'"      # from aggregation.py
@@ -99,7 +100,7 @@ function create_new_rootfs_cache_via_debootstrap() {
 	)
 
 	# This is necessary to debootstrap from a non-official repo
-	[[ $ARCH == loong64 ]] && deboostrap_arguments+=("--keyring=/usr/share/keyrings/debian-ports-archive-keyring.gpg")
+	[[ $ARCH == loong64 ]] && deboostrap_arguments+=("--no-check-gpg --keyring=/usr/share/keyrings/debian-ports-archive-keyring.gpg")
 	# Small detour for local apt caching option.
 	local_apt_deb_cache_prepare "before debootstrap" # sets LOCAL_APT_CACHE_INFO
 	if [[ "${LOCAL_APT_CACHE_INFO[USE]}" == "yes" ]]; then
