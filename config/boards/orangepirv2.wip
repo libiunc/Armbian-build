@@ -1,0 +1,15 @@
+BOARD_NAME="Orange Pi RV2"
+BOARDFAMILY="ky"
+BOOTCONFIG="orangepi_rv2_defconfig"
+#MODULES="bcmdhd"
+KERNEL_TARGET="vendor,edge"
+SKIP_BOOTSPLASH="yes" # Skip boot splash patch, conflicts with CONFIG_VT=yes
+BOOT_FDT_FILE="spacemit/x1_orangepi-rv2.dtb"
+DISTRIB_TYPE_CURRENT="sid"
+#REVISION="1.0.0"
+BOOTFS_TYPE="ext4"
+BOOTSIZE="512"
+BOOTDELAY=1
+SRC_EXTLINUX="yes"
+SRC_CMDLINE="console=ttyS0,115200 loglevel=7 rootwait rw earlycon=sbi clk_ignore_unused tsched=0 rootrwoptions=rw,noatime rootrwreset=yes no_console_suspend fsck.fix=yes fsck.repair=yes net.ifnames=0"
+PACKAGE_LIST_BOARD="rfkill bluetooth bluez bluez-tools"
